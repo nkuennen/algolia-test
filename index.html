@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="shortcut icon" href="./favicon.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/satellite-min.css">
+  <link rel="stylesheet" href="./src/index.css">
+  <link rel="stylesheet" href="./src/app.css">
+
+  <title>algolia-app</title>
+</head>
+
+<body>
+
+  <div class="ais-InstantSearch">
+
+    <div class="left-panel">
+      <div class="dropdown">
+        <button class="dropdown-button" onclick="toggleDropdown()">Filters</button>
+        <div class="dropdown-content">
+          <div id="clear-refinements"></div>
+          <h2>Brands</h2>
+          <div id="brand-list"></div>
+          <h2>Categories</h2>
+          <div id="category-list"></div>
+        </div>
+      </div>
+
+      <!--
+      <div id="clear-refinements"></div>
+      <h2>Brands</h2>
+      <div id="brand-list"></div>-->
+    </div>
+
+    
+
+
+    <!--
+  
+    -->
+    <div class="right-panel">
+      <div id="searchbox"></div>
+      <div id="hits"></div>
+      <div id="pagination"></div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.10.5/dist/algoliasearch-lite.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.52.0"></script>
+  <script src="./src/app.js"></script>
+</body>
+
+</html>

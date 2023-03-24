@@ -1,0 +1,176 @@
+body {
+  font-family: sans-serif;
+  padding: 1em;
+}
+
+.ais-ClearRefinements {
+  //margin: 1em 0;
+}
+
+.ais-SearchBox {
+  margin: 1em 0;
+}
+
+.ais-Pagination {
+  margin-top: 1em;
+}
+
+.left-panel {
+  float: left;
+  width: 250px;
+  margin: 20px 0;
+}
+
+.right-panel {
+  margin-left: 260px;
+  margin-top: 20px;
+}
+
+.ais-InstantSearch {
+  //max-width: 960px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.ais-Hits-list {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  gap: 10px;
+  //align-items: start;
+  //flex-wrap: wrap;
+  //flex-direction: row;
+}
+
+.ais-Hits-item {
+  margin-bottom: 1em;
+  //width: calc(100% - 1rem);
+  width: 100%;
+  //flex-direction: row;
+}
+
+.ais-Hits-item img {
+  margin-right: 1em;
+  margin-bottom: 1em;
+  max-width: 100%;
+}
+
+.hit-name {
+  margin-bottom: 0.5em;
+}
+
+.hit-description {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+}
+
+.hit-button {
+  display: block;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/*Dropdown styles*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.dropdown-button {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.dropdown-content {
+  //display: inline-block;
+  //position: relative;
+  //z-index: 1;
+  background-color: #f1f1f1;
+  //min-width: 160px;
+  //box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  margin-top: 5px;
+}
+
+  .dropdown-content h2 {
+    font-size: 16px;
+    font-weight: bold;
+    //margin-top: 0;
+  }
+
+  .dropdown-content ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dropdown-content li {
+    margin-bottom: 5px;
+  }
+
+  .dropdown-content a {
+    text-decoration: none;
+    color: black;
+  }
+
+    .dropdown-content a:hover {
+      text-decoration: underline;
+    }
+
+
+
+
+
+@media screen and (max-width: 1000px) {
+  .ais-Hits-list {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 776px) {
+  .ais-Hits-list {
+    grid-template-columns: auto;
+  }
+
+  .left-panel {
+      //display: none;
+      width: 100%;
+  }
+
+  .right-panel {
+      margin-left: 0;
+  }
+
+  .dropdown-button {
+      display: block;
+  }
+
+  .dropdown {
+      display: inline-block;
+  }
+
+  .dropdown-content {
+      display: none;
+  }
+}
+
+
+
+
+
+
+
+

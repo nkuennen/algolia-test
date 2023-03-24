@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Product Page</title>
+  <!-- Algolia CSS Stylesheet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/search-ui@latest/lib/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>My Product Page</h1>
+    <!-- Algolia Search Box -->
+    <div id="search-box"></div>
+  </header>
+  <main>
+    <div class="product">
+      <!-- Product Image -->
+      <img id="product-image" src="" alt="Product Image">
+      <!-- Product Name -->
+      <h2 class="product-name"></h2>
+      <!-- Product Price -->
+      <p class="product-price"></p>
+      <!-- Product Description -->
+      <p class="product-description"></p>
+      <!-- Algolia Facet Filters -->
+      <div id="facet-filters"></div>
+    </div>
+  </main>
+  <!-- Algolia JavaScript SDK and Search UI -->
+  <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete@^4.0.0-alpha.5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@algolia/search-client@^4.6.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@algolia/search-ui@latest"></script>
+  <!-- Algolia Configuration -->
+  <script>
+    const searchClient = algoliasearch('RERDNK4DKF', '526aacdcea6748371ccb73098e3a87b6');
+    const index = searchClient.initIndex('products');
+
+    function getProductById(productId) {
+      index.search({
+        filters: `objectID:${productId}`,
+        hitsPerPage: 1,
+      })
+        .then((response) => {
+          const product = response.hits[0];
+          // Populate the product information in the DOM
+          document.getElementById('product-image').src = product.image_url;
+          document.querySelector('.product-name').textContent = product.name;
+          document.querySelector('.product-price').textContent = `$${product.price}`;
+          document.querySelector('.product-description').textContent = product.description;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+
+    // When the page loads, get the product ID from the URL and query Algolia for the product
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('productId');
+    getProductById(productId);
+
+    // Initialize Algolia widgets
+    const search = instantsearch({
+      indexName: 'products',
+      searchClient,
+    });
+    search.addWidgets([
+      // Algolia Search Box
+      instantsearch.widgets.searchBox({
+        container: '#search-box',
+        placeholder: 'Search for products...',
+      }),
+      // Algolia Facet Filters
+      instantsearch.widgets.refinementList({
+        container: '#facet-filters',
+        attribute: 'category',
+        operator: 'or',
+      }),
+    ]);
+    search.start();
+  </script>
+</body>
+</html>

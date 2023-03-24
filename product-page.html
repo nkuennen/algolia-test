@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic@1.10.2/dist/autocomplete.min.css" integrity="sha256-rPZo57/77V7XaHJ1mcA7ohu/44bzbKjBmOzbo4MK4Mk=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete@1.15.2/dist/autocomplete.min.js" integrity="sha256-kX9Fn+fu3jKilZOe10XXk+7fzZZW1iZC+s+kZPi18sM=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <h1>Product Name</h1>
+  <p>Product Description</p>
+
+  <form action="/cart/add" method="post">
+    <input type="hidden" name="id" value="{{ product.id }}" />
+    <input type="submit" value="Add to Cart" />
+  </form>
+
+  <h2>Product Reviews</h2>
+  <ul>
+    {% for review in product.reviews %}
+    <li>{{ review }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Related Products</h2>
+  <div id="autocomplete-container">
+    <input type="search" id="autocomplete-input" placeholder="Search related products...">
+  </div>
+
+  <script>
+        const autocomplete = algoliasearch.autocomplete(
+            '#autocomplete-input',
+            {
+                appId: 'YOUR_APP_ID',
+                apiKey: 'YOUR_SEARCH_API_KEY',
+                indexName: 'YOUR_INDEX_NAME',
+                templates: {
+                    dropdownMenu:
+                        '<div class="aa-dataset-1">' +
+                        '<div class="aa-dataset-header">' +
+                        '<div class="aa-dataset-header-title">Related Products</div>' +
+                        '</div>' +
+                        '<div class="aa-dataset-body"></div>' +
+                        '</div>',
+                    suggestion: function(suggestion) {
+                        return '<div>' +
+                            '<img src="' + suggestion.image_url + '">' +
+                            '<div class="aa-suggestion-title">' +
+                            suggestion._highlightResult.name.value +
+                            '</div>' +
+                            '<div class="aa-suggestion-description">' +
+                            suggestion._highlightResult.description.value +
+                            '</div>' +
+                            '</div>';
+                    },
+                    footer: function(query) {
+                        return '<div class="aa-footer">' +
+                            'See all results for "' + query.query + '"' +
+                            '</div>';
+                    }
+                }
+            }
+        );
+  </script>
+
+</body>
+</html>
